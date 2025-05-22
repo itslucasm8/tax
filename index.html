@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimatrice de remboursement de taxe WHV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 1rem;
+            line-height: 1.5;
+        }
+        label {
+            display: block;
+            margin-top: 1rem;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            box-sizing: border-box;
+        }
+        .hidden {
+            display: none;
+        }
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estimatrice de remboursement de taxe WHV</h1>
+    <form id="taxForm">
+        <label>
+            Revenu TFN (AUD)
+            <input type="number" id="income_tfn" name="income_tfn" required>
+        </label>
+
+        <fieldset>
+            <legend>As-tu aussi travaillé en ABN ?</legend>
+            <label><input type="radio" name="has_abn" value="oui" required> Oui</label>
+            <label><input type="radio" name="has_abn" value="non" required> Non</label>
+        </fieldset>
+
+        <label id="abnIncomeField" class="hidden">
+            Revenu ABN (AUD)
+            <input type="number" id="income_abn" name="income_abn">
+        </label>
+
+        <fieldset>
+            <legend>As-tu un TFN ?</legend>
+            <label><input type="radio" name="has_tfn" value="oui" required> Oui</label>
+            <label><input type="radio" name="has_tfn" value="non" required> Non</label>
+        </fieldset>
+
+        <label>
+            Combien de mois as-tu travaillé ?
+            <input type="number" id="months" name="months" min="1" max="12" required>
+        </label>
+
+        <label>
+            Ton statut fiscal
+            <select id="residency_status" name="residency_status" required>
+                <option value="resident">Résident</option>
+                <option value="non-resident">Non-résident</option>
+                <option value="unknown">Je sais pas</option>
+            </select>
+        </label>
+
+        <button type="submit">Estimer mon remboursement</button>
+    </form>
+
+    <div id="result" class="result hidden"></div>
+
+    <script>
+        const hasAbnRadios = document.getElementsByName('has_abn');
+        const abnIncomeField = document.getElementById('abnIncomeField');
+
+        hasAbnRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'oui' && radio.checked) {
+                    abnIncomeField.classList.remove('hidden');
+                } else if (radio.value === 'non' && radio.checked) {
+                    abnIncomeField.classList.add('hidden');
+                }
+            });
+        });
+
+        document.getElementById('taxForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Placeholder: tax calculation logic will go here
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Résultat à venir...';
+            resultDiv.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
