@@ -77,6 +77,7 @@
     <script>
         const hasAbnRadios = document.getElementsByName('has_abn');
         const abnIncomeField = document.getElementById('abnIncomeField');
+        const incomeAbnInput = document.getElementById('income_abn');
 
         hasAbnRadios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -84,6 +85,7 @@
                     abnIncomeField.classList.remove('hidden');
                 } else if (radio.value === 'non' && radio.checked) {
                     abnIncomeField.classList.add('hidden');
+                    incomeAbnInput.value = 0;
                 }
             });
         });
