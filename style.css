@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+#result.positive { color: green; }
+#result.negative { color: red; }
+#result.warning { color: orange; }
+#abnSection { margin-top: 10px; }

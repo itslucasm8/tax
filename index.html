@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Estimatrice de remboursement WHV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Estimer ton remboursement d'impôts WHV</h1>
+    <form id="taxForm">
+        <label for="income_tfn">Revenu TFN (AUD):</label>
+        <input type="number" id="income_tfn" name="income_tfn" required>
+        <br>
+        <span>As-tu aussi travaillé en ABN ?</span>
+        <label><input type="radio" name="has_abn" value="Oui" checked> Oui</label>
+        <label><input type="radio" name="has_abn" value="Non"> Non</label>
+        <div id="abnSection">
+            <label for="income_abn">Revenu ABN (AUD):</label>
+            <input type="number" id="income_abn" name="income_abn" value="0">
+        </div>
+        <br>
+        <span>As-tu un TFN ?</span>
+        <label><input type="radio" name="has_tfn" value="Oui" checked> Oui</label>
+        <label><input type="radio" name="has_tfn" value="Non"> Non</label>
+        <br>
+        <label for="months">Combien de mois as-tu travaillé ?</label>
+        <input type="number" id="months" name="months" min="1" max="12" value="12">
+        <br>
+        <label for="residency_status">Ton statut fiscal :</label>
+        <select id="residency_status" name="residency_status">
+            <option value="resident">Résident</option>
+            <option value="nonresident">Non-résident</option>
+            <option value="unknown">Je sais pas</option>
+        </select>
+        <br>
+        <button type="submit">Estimer mon remboursement</button>
+    </form>
+    <div id="result" style="display:none; margin-top:20px;"></div>
+    <script src="script.js"></script>
+</body>
+</html>
